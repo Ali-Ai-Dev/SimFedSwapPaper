@@ -2,4 +2,263 @@
 %\chapter{مقدمه}
 
 \section{بررسی نتایج}
-تست یک
+
+\subsection{
+	مجموعه داده
+	\lr{\texttt{\fontspec{Times New Roman} MNIST}}%
+	\LTRfootnote{Modified National Institute of Standards and Technology}
+}
+اکنون نتایج مربوط به مجموعه داده
+\lr{MNIST}
+بررسی خواهد شد که شکل
+\ref{result_mnist_mlp}
+نتایج مقایسه روش
+\lr{SimFedSwap}
+با سایر روش‌های مرجع را با استفاده از مدل
+\lr{MLP}
+به تصویر می‌کشد.
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_mnist_mlp_mid}
+		\includegraphics*[width=.441\textwidth]{images/chap5/result/mnist/acc_mid_mlp.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_mnist_mlp_zoom}
+		\includegraphics*[width=.441\textwidth]{images/chap5/result/mnist/acc_zoom_mlp.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{MNIST}
+		با استفاده از مدل
+		\lr{MLP}.
+	}
+	\label{result_mnist_mlp}
+\end{figure}
+همچنین، پارامترهای به‌کاررفته در این اجرا در جدول
+\ref{tabel_parameter_mnist} 
+به نمایش درآمده‌اند.
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[t]
+	\centering
+	\caption{
+		پارامترهای اجرا در مجموعه داده
+		\lr{MNIST}
+	}
+	\label{tabel_parameter_mnist}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			\specialcell{توزیع\\داده} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{MNIST} &
+			\lr{MSS} &
+			نرمال &
+			\lr{10} &
+			\lr{32} &
+			\lr{1.0} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{1} &
+			\lr{5} &
+			\lr{3}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+نکته قابل توجه این است که منحنی‌های
+\lr{FedAvg} 
+و
+\lr{FedSwap} 
+به عنوان منحنی‌های نهایی و مرجع بر روی سایر منحنی‌ها قرار گرفته‌اند. در صورتی که رنگ متفاوتی در نمودار دیده شود، این موضوع نشان‌دهنده اختلاف عملکرد روش مربوطه در آن نقطه خواهد بود. این تغییر ممکن است نشان‌دهنده عملکرد بهتر یا ضعیف‌تر در مقایسه با دیگر روش‌ها باشد و می‌تواند به عنوان مبنایی برای مقایسه و تحلیل مورد توجه قرار گیرد.
+
+
+
+
+همان‌طور که در شکل
+\ref{result_mnist_mlp} 
+مشاهده می‌شود، روش‌های مبتنی‌بر جابه‌جایی به شکل بسیار ناچیزی از روش
+\lr{FedAvg} 
+نتایج مطلوب‌تری را ارائه داده‌اند. نکته قابل توجه این است که همه روش‌های مبتنی‌بر جابه‌جایی عملکردی مشابه داشته‌اند. برای بررسی دقیق‌تر این اجرا، منحنی‌های خطا در شکل
+\ref{app_result_mnist_mlp}
+پیوست، قابل مشاهده هستند.
+
+
+در شکل
+\ref{result_mnist_cnn}
+همان آزمایش قبلی تکرار شده، با این تفاوت که این مرتبه از مدل شبکه عصبی
+\lr{CNN}
+استفاده شده است. همان‌طور که دیده می‌شود، تقریباً تمامی روش‌ها عملکرد مشابهی داشته‌اند. این نکته نشان می‌دهد که وقتی شبکه به راحتی به دقت بالایی می‌رسد، تفاوتی در نتایج بین روش‌ها دیده نمی‌شود. برای جزئیات بیشتر این اجرا، منحنی‌های خطا در شکل
+\ref{app_result_mnist_cnn}
+پیوست، آمده‌اند.
+
+
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_mnist_cnn_mid}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/mnist/acc_mid_cnn.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_mnist_cnn_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/mnist/acc_zoom_cnn.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{MNIST}
+		با استفاده از مدل
+		\lr{CNN}.
+	}
+	\label{result_mnist_cnn}
+\end{figure}
+
+
+
+
+
+\FloatBarrier
+\subsection{
+	مجموعه داده
+	\lr{\texttt{\fontspec{Times New Roman} CIFAR-10}}%
+	\LTRfootnote{Canadian Institute For Advanced Research}
+}
+اکنون نتایج مربوط به مجموعه داده
+\lr{CIFAR-10}
+بررسی خواهد شد که شکل
+\ref{result_cifar10_equal}
+نتایج مقایسه روش
+\lr{SimFedSwap}
+با سایر روش‌های مرجع را با توزیع داده یکنواخت بین کاربران به تصویر می‌کشد.
+پارامترهای استفاده شده در این آزمایش نیز در جدول
+\ref{tabel_parameter_cifar10}
+به نمایش درآمده‌اند.
+
+
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_cifar10_equal_mid}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cifar10/acc_mid_equal.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_cifar10_equal_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cifar10/acc_zoom_equal.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{CIFAR-10}
+		با توزیع داده یکنواخت.
+	}
+	\label{result_cifar10_equal}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[t]
+	\centering
+	\caption{
+		پارامترهای اجرا در مجموعه داده
+		\lr{CIFAR-10}
+	}
+	\label{tabel_parameter_cifar10}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{CIFAR-10} &
+			\lr{Conv} &
+			\lr{MSS} &
+			\lr{10} &
+			\lr{64} &
+			\lr{1.0} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{2} &
+			\lr{3} &
+			\lr{10}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+همان‌طور که در شکل
+\ref{result_cifar10_equal}
+مشاهده می‌شود، روش‌های مبتنی‌بر جابه‌جایی نسبت به روش
+\lr{FedAvg}
+عملکرد متمایزی داشته‌اند. با این حال، این روش‌ها در یک سطح عملکردی نزدیک به هم قرار گرفته‌اند. به‌طور کلی، با وجود اختلافات جزئی، روش‌های مبتنی‌بر شباهت در مقایسه با روش
+\lr{FedSwap}
+کمی بهتر عمل کرده‌اند. برای آگاهی از جزئیات بیشتر، به منحنی‌های خطا در شکل
+\ref{app_result_cifar10_equal}
+پیوست، توجه نمایید.
+
+
+در شکل
+\ref{result_cifar10_normal}%
+، آزمایش قبلی دوباره اجرا شده، اما این بار از توزیع داده نرمال استفاده شده است. مشاهده می‌شود که در این وضعیت نیز روش‌های مبتنی‌بر جابه‌جایی، عملکرد بهتری نسبت به روش
+\lr{FedAvg}
+داشته‌اند. البته، نتایج حاصل از روش‌های جابه‌جایی تقریباً مشابه بوده و تفاوت قابل توجهی بین آن‌ها دیده نمی‌شود. برای مشاهده جزئیات بیشتر، می‌توان به منحنی‌های خطا در شکل
+\ref{app_result_cifar10_normal}
+پیوست، مراجعه کرد.
+
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_cifar10_normal_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cifar10/acc_base_normal.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_cifar10_normal_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cifar10/acc_zoom_normal.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{CIFAR-10}
+		با توزیع داده نرمال.
+	}
+	\label{result_cifar10_normal}
+\end{figure}
+
