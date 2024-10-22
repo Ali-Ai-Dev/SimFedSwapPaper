@@ -7,11 +7,182 @@
 \section{کارهای مرتبط}
 \subsection{جابه‌جایی فدرال}
 \subsection{معیارهای مشابهت}
-
+ 
 \section{مدل سیستم}
 \subsection{جابه‌جایی فدرال برپایه شباهت}
-\subsection{جابه‌جایی حریصانه}
-\subsection{جابه‌جایی حداقل شباهت}
+\subsection{تاثیرات جابه‌جایی}
+
+\subsection{نحوه جابه‌جایی}
+زمانی که همه مدل‌های شبکه عصبی در سرور مرکزی قرار دارند، وظیفه سرور این است که تصمیم بگیرد کدام کاربران مدل‌های خود را با یکدیگر جابه‌جا کنند. برای انجام این کار، ابتدا باید مدل‌ها با یکدیگر مقایسه شوند تا میزان شباهت بین آن‌ها مشخص شود. سپس، بر اساس این شباهت‌ها تعیین می‌شود که کدام کاربران مدل‌های شبکه عصبی خود را با یکدیگر مبادله کنند، یا به عبارت دیگر، سرور مشخص می‌کند کدام مدل به کدام کاربر ارسال شود.
+
+\subsubsection{جابه‌جایی حریصانه}
+
+در روش حریصانه، از بین تمام کاربران موجود، یک کاربر به‌صورت تصادفی انتخاب می‌شود. سپس مدل شبکه عصبی این کاربر با مدل‌های تمامی کاربران دیگر مقایسه می‌شود تا میزان شباهت آن‌ها سنجیده شود. در این مرحله، کاربری که مدل شبکه عصبی او کمترین شباهت را با مدل کاربر انتخاب‌ شده دارد، به عنوان کاربر مقصد برای جابه‌جایی مدل انتخاب می‌شود. پس از این انتخاب، سرور مدل‌های این دو کاربر را با یکدیگر جابه‌جا می‌کند و در نهایت این دو کاربر را از لیست انتخاب حذف خواهد کرد.
+
+پس از انجام این جابه‌جایی، فرایند مشابهی برای کاربران باقی‌مانده تکرار می‌شود. ابتدا یک کاربر دیگر به‌صورت تصادفی انتخاب می‌شود و دقیقا همان روند بالا برای آن تکرار خواهد شد.
+شبه کد کامل این روش در الگوریتم
+\ref{algo_greedy_swapping}
+ارائه شده است. علاوه بر این، نمادهای مختص به این الگوریتم در جدول
+\ref{tabel_GreedySwappingNotations}
+و همچنین تمامی نمادهای پایه در جدول
+\ref{tabel_FedAvgNotations}
+توضیح داده شده‌اند.
+هدف از این جداول، فراهم کردن درکی جامع از نحوه عملکرد و پیاده‌سازی الگوریتم می‌باشد.
+
+
+\begin{LTR}
+	\SetAlgoNlRelativeSize{-1}
+	\begin{algorithm}[t]
+		\begin{RTL}
+			\caption{%
+				جابه‌جایی حریصانه
+				\lr{(Greedy Swapping)}
+			}
+			\label{algo_greedy_swapping}
+		\end{RTL}
+		
+		\begin{latin}
+			\SetKwFunction{GreedySwapping}{GreedySwapping}
+			\SetKwProg{Fn}{Function}{:}{end}
+			\Fn{\GreedySwapping{}}{
+				$LRS$ = copy of $U_t$\;
+				$NS$ = (length of $U_t$ // 2) * $SP$\;
+				\BlankLine
+				
+				\For{$NS$ times}{
+					$RandomIndex$ = random integer between $0$ and length of $LRS$\;
+					$SCB = LRS[RandomIndex]$\;
+					remove $SCB$ from $LRS$\;
+					
+					\BlankLine
+					Initialize $LstSimilarity$ as an empty list\;
+					\For{each $RC \in LRS$}{
+						$Sim = \texttt{ModelSimilarity} (w^{SCB}, w^{RC})$\;
+						Append $Sim$ to $LstSimilarity$\;
+					}
+					$MinSimilarityIndex$ = index of the minimum value in $LstSimilarity$\;
+					$SCD = LRS[MinSimilarityIndex]$\;
+					remove $SCD$ from $LRS$\;
+					\BlankLine
+					
+					$\texttt{Swap}(SCB, SCD)$\;
+				}
+			}
+		\end{latin}
+	\end{algorithm}
+\end{LTR}
+
+\begin{table}[h]
+	\centering
+	\caption{نمادهای مختص الگوریتم جابه‌جایی حریصانه}
+	\label{tabel_GreedySwappingNotations}
+	\begin{tabular}{cr}
+		\hline
+		متغیر & توضیحات \\
+		\hline
+		$LRS \, (LstRemainSwap)$ & لیست باقی‌مانده جابه‌جایی \\
+		$NS \, (NumSwaps)$ & تعداد جابه‌جایی‌ها \\
+		$SP \, (SwapPercentage)$ & ضریب کنترلی برای تعداد جابه‌جایی‌ها \\
+		$RandomIndex$ & شاخص تصادفی \\
+		$SCB \, (SwapClientBase)$ & کاربر مبدا جابه‌جایی \\
+		$LstSimilarity$ & لیست مشابهت \\
+		$RC \, (RemainClient)$ & کاربر باقی‌مانده \\
+		$Sim$ & معیار مشابهت بین دو مدل شبکه عصبی \\
+		$SCD \, (SwapClientDest)$ & کاربر مقصد جابه‌جایی
+	\end{tabular}
+\end{table}
+
+
+
+
+\subsubsection{جابه‌جایی حداقل شباهت}
+
+در این روش، برای این که حداقل شباهت ممکن بین تمامی مدل‌های شبکه عصبی به دست آید، لازم است تمامی مدل‌ها با یکدیگر مقایسه شوند و دو مدلی که کمترین شباهت را دارند با هم جابه‌جا شوند. به عنوان مثال، اگر \( n \) مدل وجود داشته باشد، باید یک ماتریس \( n \times n \) برای بررسی میزان شباهت‌ها ایجاد شود. در این ماتریس، شباهت مدل 1 با مدل 2 برابر با شباهت مدل 2 با مدل 1 در نظر گرفته می‌شود. همچنین به دلیل این که مقایسه یک مدل با خودش بی‌معنی است، ماتریس نهایی به شکل یک ماتریس بالا مثلثی%
+\LTRfootnote{Upper Triangular Matrix}
+(بدون قطر اصلی) تبدیل می‌شود. به این صورت که تنها حدود نیمی از ماتریس، شامل شباهت‌های مورد نیاز برای مقایسه است. در نتیجه ماتریس مورد نظر به شکل زیر در خواهد آمد.
+\begin{equation}
+	\begin{bmatrix}
+		\infty & a^{12} & a^{13} & \cdots & a^{1n} \\
+		\infty & \infty & a^{23} & \cdots & a^{2n} \\
+		\infty & \infty & \infty & \cdots & a^{3n} \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		\infty & \infty & \infty & \cdots & \infty
+	\end{bmatrix}
+	\label{eq_similarity_matrix}
+\end{equation}
+
+ابتدا، تمامی شباهت‌ها بین مدل‌ها محاسبه می‌شود و سپس از ماتریس ایجاد شده، کمترین مقدار شباهت انتخاب می‌شود. شماره سطر و ستون متناظر با این مقدار نشان می‌دهد که این دو مدل باید با یکدیگر جابه‌جا شوند. پس از انجام این جابه‌جایی، تمامی مقدارهای مربوط به سطر و ستون متناظر با این دو مدل باید به بی‌نهایت تغییر داده شوند تا در مراحل بعدی مجدد انتخاب نشوند. همچنین باید دقت کرد که هر دو سطر و ستون مرتبط با این دو مدل باید به بی‌نهایت تغییر داده شوند.
+
+برای درک بهتر، فرض کنید کمترین مقدار شباهت در سطر سوم و ستون ششم ماتریس قرار دارد. در این حالت، مدل‌های سوم و ششم باید با یکدیگر جابه‌جا شوند. پس از این جابه‌جایی، لازم است که تمامی مقادیر در سطرهای سوم و ششم و همچنین ستون‌های سوم و ششم به بی‌نهایت تغییر کنند تا این دو مدل دیگر مورد بررسی قرار نگیرند. به این ترتیب، در دور بعدی، کوچک‌ترین مقدار شباهت از ماتریس انتخاب می‌شود و چون مقادیر مربوط به مدل‌های سوم و ششم به بی‌نهایت تغییر کرده‌اند، دیگر در این مرحله حضور نخواهند داشت و انتخاب نمی‌شوند. شبه کد کامل این روش در الگوریتم
+\ref{algo_min_similarity_swapping}
+ارائه شده است. علاوه بر این، نمادهای مختص به این الگوریتم در جدول
+\ref{tabel_MinSimilaritySwapNotations}
+توضیح داده شده‌اند.
+
+
+\begin{LTR}
+	\SetAlgoNlRelativeSize{-1}
+	\begin{algorithm}[t]
+		\begin{RTL}
+			\caption{%
+				جابه‌جایی حداقل شباهت
+				\lr{(Minimum Similarity Swapping)}
+			}
+			\label{algo_min_similarity_swapping}
+		\end{RTL}
+		
+		\begin{latin}
+			\SetKwFunction{MinSimilaritySwapping}{MinSimilaritySwapping}
+			\SetKwProg{Fn}{Function}{:}{end}
+			\Fn{\MinSimilaritySwapping{}}{
+				Initialize $SimArray$\;
+				$L$ = length of $U_t$\;
+				\BlankLine
+				
+				\For{each $row$ from $0$ to $L$}{
+					\For{each $col$ from $(row+1)$ to $L$}{
+						$Sim = \texttt{ModelSimilarity} (w^{row}, w^{col})$\;
+						Append $Sim$ to $SimArray$\;
+					}
+				}
+				\BlankLine
+				
+				$NS$ = ($L$ // 2) * $SP$\;
+				\For{$NS$ times}{
+					$MI$ = index of minimum value in $SimArray$\;
+					$row, col$ = find $row$ and $col$ number, based on $MI$\;					
+					Set all values of $SimArray[row, col]$ to $\infty$\;
+					\BlankLine
+					
+					$\texttt{Swap}(w^{row}, w^{col})$\;
+				}
+			}
+		\end{latin}
+	\end{algorithm}
+\end{LTR}
+
+
+\begin{table}[h]
+	\centering
+	\caption{نمادهای مختص الگوریتم جابه‌جایی حداقل شباهت}
+	\label{tabel_MinSimilaritySwapNotations}
+	\begin{tabular}{cr}
+		\hline
+		متغیر & توضیحات \\
+		\hline
+		$SimArray$ & آرایه مشابهت \\
+		$L$ & طول مجموعه‌ای از کاربران در گام $t$ \\
+		$MI \, (MinIndex)$ & شاخص مقدار کمینه در آرایه مشابهت \\
+		$row$ & شماره سطر بر اساس دید ماتریس مشابهت \\
+		$col$ & شماره ستون بر اساس دید ماتریس مشابهت
+	\end{tabular}
+\end{table}
+
+
+
+
+
+
 
 
 \section{بررسی نتایج}
