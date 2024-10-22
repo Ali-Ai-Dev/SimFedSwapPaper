@@ -642,3 +642,62 @@
 باید به این نکته توجه داشت که دقت کلی که در این مجموعه داده به 50 درصد رسید، وابسته به طراحی شبکه عصبی است. با بهینه‌سازی این شبکه، می‌توان به دقت بالاتری دست یافت. با این حال، این بهینه‌سازی تأثیری بر مقایسه بین روش‌ها نخواهد داشت، زیرا همه روش‌ها به‌طور همزمان به دقت بهتری دست خواهند یافت.
 
 
+
+\subsection{
+	مقایسه جابه‌جایی حریصانه با جابه‌جایی حداقل شباهت در روش
+	\lr{\texttt{\fontspec{Times New Roman} SimFedSwap}}
+}
+
+شکل
+\ref{result_MSS_vs_GS_FEMNISTwriter}
+عملکرد دو روش جابه‌جایی حریصانه و جابه‌جایی حداقل شباهت را در الگوریتم
+\lr{SimFedSwap}
+مقایسه می‌کند. این آزمایش بر روی مجموعه داده
+\lr{FEMNISTwriter}
+انجام شده و پارامترهای مربوط به این بررسی در جدول
+\ref{tabel_parameter_FEMNISTwriter}
+آورده شده است.
+
+
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_MSS_vs_GS_FEMNISTwriter_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result_MSS_vs_GS/FEMNISTwriter/acc_base.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_MSS_vs_GS_FEMNISTwriter_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result_MSS_vs_GS/FEMNISTwriter/acc_zoom.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت بین
+		\lr{MSS}
+		و
+		\lr{GS}%
+		، در مجموعه داده
+		\lr{FEMNISTwriter}.
+	}
+	\label{result_MSS_vs_GS_FEMNISTwriter}
+\end{figure}
+
+
+
+نتایج به دست آمده از شکل
+\ref{result_MSS_vs_GS_FEMNISTwriter}
+نشان می‌دهد که معیار
+\lr{OSAD}
+با استفاده از جابه‌جایی حریصانه عملکردی مشابه روش
+\lr{FedSwap}
+داشته است. اما روش‌های
+\lr{CKA}
+با استفاده از هسته‌های خطی و گاوسی به تدریج عملکرد خود را بهبود بخشیده و به نتایج بهتری دست یافته‌اند. برای اطلاعات دقیق‌تر، منحنی‌های خطا در شکل
+\ref{app_result_MSS_vs_GS_FEMNISTwriter}
+پیوست، قابل بررسی هستند.
+
+
+
