@@ -408,3 +408,237 @@
 
 
 
+
+
+
+\subsubsection{
+	مقایسه نتایج در رویکرد کلاس‌بندی
+	\lr{\texttt{\fontspec{Times New Roman} (FEMNISTclass)}}
+}
+
+نتایج مقایسه روش
+\lr{SimFedSwap}
+با دیگر روش‌های مرجع در شکل
+\ref{result_FEMNISTclass}
+نمایش داده شده‌اند که این آزمایش بر روی مجموعه داده
+\lr{FEMNISTclass}
+انجام شده است. پارامترهای مورد استفاده در این آزمایش نیز در جدول
+\ref{tabel_parameter_FEMNISTclass}
+ذکر شده‌اند.
+
+
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_FEMNISTclass_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTclass/acc_base.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_FEMNISTclass_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTclass/acc_zoom.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{FEMNISTclass}.
+	}
+	\label{result_FEMNISTclass}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[t]
+	\centering
+	\caption{
+		پارامترهای اجرا در مجموعه داده
+		\lr{FEMNISTclass}
+	}
+	\label{tabel_parameter_FEMNISTclass}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			\specialcell{توزیع\\داده} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{FEMNISTclass} &
+			\lr{Conv} &
+			\lr{MSS} &
+			یکنواخت &
+			\lr{200} &
+			\lr{1024} &
+			\lr{1.0} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{2} &
+			\lr{5} &
+			\lr{3}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+
+از شکل
+\ref{result_FEMNISTclass}
+مشخص است که روش‌های مبتنی‌بر جابه‌جایی در مقایسه با
+\lr{FedAvg}
+عملکرد متفاوتی نشان می‌دهند، اما همچنان تفاوت‌های عملکردی بین آن‌ها محدود و نزدیک به هم است.
+نکته قابل توجه این است که بسیاری از تغییرات در نمودارها به لحظات جابه‌جایی یا میانگین‌گیری مربوط می‌شوند.
+برای جزئیات بیشتر و بررسی دقیق‌تر، می‌توان به منحنی‌های خطا که در شکل
+\ref{app_result_FEMNISTclass}
+پیوست آمده‌اند، مراجعه کرد.
+
+
+
+
+\subsubsection{
+	مقایسه نتایج در رویکرد نویسندگان
+	\lr{\texttt{\fontspec{Times New Roman} (FEMNISTwriter)}}
+}
+نتایج مربوط به مقایسه روش
+\lr{SimFedSwap}
+با سایر روش‌های مرجع در شکل
+\ref{result_FEMNISTwriter_one}
+قابل مشاهده است. این آزمایش بر روی مجموعه داده
+\lr{FEMNISTwriter}
+اجرا شده و پارامترهای به‌کاررفته در آن نیز در جدول
+\ref{tabel_parameter_FEMNISTwriter}
+ذکر شده‌اند.
+
+
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_FEMNISTwriter_one_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_base_one.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_FEMNISTwriter_one_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_zoom_one.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در یک اجرا بر روی مجموعه داده
+		\lr{FEMNISTwriter}.
+	}
+	\label{result_FEMNISTwriter_one}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[t]
+	\centering
+	\caption{
+		پارامترهای اجرا در مجموعه داده
+		\lr{FEMNISTwriter}
+	}
+	\label{tabel_parameter_FEMNISTwriter}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			\specialcell{توزیع\\داده} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{FEMNISTwriter} &
+			\lr{Conv} &
+			\lr{MSS} &
+			یکنواخت &
+			\lr{3597} &
+			\lr{64} &
+			\lr{0.15} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{1} &
+			\lr{5} &
+			\lr{3}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+در شکل
+\ref{result_FEMNISTwriter_one}
+مشاهده می‌شود که روش‌های مبتنی‌بر جابه‌جایی نتایجی متفاوت از روش
+\lr{FedAvg}
+ارائه داده‌اند. اما نکته مهم، برتری قابل توجه روش‌های مبتنی‌بر شباهت نسبت به
+\lr{FedSwap}
+است. این اولین آزمایشی است که در آن روش‌های شباهت محور توانسته‌اند عملکرد بهتری را به‌طور معناداری ارائه کنند. برای اطلاعات بیشتر و تحلیل دقیق‌تر، می‌توان به منحنی‌های خطا در شکل
+\ref{app_result_FEMNISTwriter_one}
+پیوست، مراجعه کرد.
+
+
+
+با بهبود نتایج، این پرسش پیش می‌آید که آیا این برتری در شرایط استفاده از چندین
+\lr{Seed}
+متفاوت، همچنان پابرجا خواهد بود. برای پاسخ به این سوال، آزمایش قبلی با پنج
+\lr{Seed}
+مختلف تکرار شده و میانگین نتایج در شکل
+\ref{result_FEMNISTwriter_seed}
+نمایش داده شده‌اند. نکته قابل توجه این است که اختلاف روش مبتنی‌بر شباهت با روش
+\lr{FedSwap}%
+، دیگر به وضوح قبلی دیده نمی‌شود و تنها، بهبودی حدود یک درصد در میانگین پنج اجرا مشاهده می‌شود.
+\begin{figure}[t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_FEMNISTwriter_seed_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_base_seed.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_FEMNISTwriter_seed_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_zoom_seed.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در میانگین پنج اجرا بر روی مجموعه داده
+		\lr{FEMNISTwriter}.
+	}
+	\label{result_FEMNISTwriter_seed}
+\end{figure}
+همچنین باید به این نکته توجه شود که تغییر
+\lr{Seed}
+در نمودارهای پیشین، تفاوت چشم‌گیری در خروجی ایجاد نمی‌کردند.
+برای بررسی جزئیات بیشتر، منحنی‌های خطا در شکل
+\ref{app_result_FEMNISTwriter_seed}
+پیوست ارائه شده‌اند.
+
+
+بنابراین می‌توان نتیجه گرفت که با افزایش تعداد کاربران و داده‌های مربوط به آن‌ها، روش‌های مبتنی بر شباهت، هرچند به میزان کم، می‌توانند عملکرد بهتری نشان دهند.
+باید به این نکته توجه داشت که دقت کلی که در این مجموعه داده به 50 درصد رسید، وابسته به طراحی شبکه عصبی است. با بهینه‌سازی این شبکه، می‌توان به دقت بالاتری دست یافت. با این حال، این بهینه‌سازی تأثیری بر مقایسه بین روش‌ها نخواهد داشت، زیرا همه روش‌ها به‌طور همزمان به دقت بهتری دست خواهند یافت.
+
+
