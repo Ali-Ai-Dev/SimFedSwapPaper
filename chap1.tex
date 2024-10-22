@@ -262,3 +262,99 @@
 	\label{result_cifar10_normal}
 \end{figure}
 
+
+
+
+\FloatBarrier
+\subsection{
+	مجموعه داده
+	\lr{\texttt{\fontspec{Times New Roman} CINIC-10}}%
+	\LTRfootnote{CIFAR-10 and ImageNet Combined}
+}
+
+اکنون نتایج مربوط به مجموعه داده
+\lr{CINIC-10}
+بررسی خواهد شد که شکل
+\ref{result_cinic10}
+نتایج مقایسه روش
+\lr{SimFedSwap}
+با سایر روش‌های مرجع را به تصویر می‌کشد.
+همچنین، پارامترهای به کار رفته در این آزمایش در جدول
+\ref{tabel_parameter_cinic10}
+ارائه شده‌اند.
+
+\begin{figure}[b!t]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_cinic10_mid}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cinic10/acc_mid.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_cinic10_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cinic10/acc_zoom.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{CINIC-10}.
+	}
+	\label{result_cinic10}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[t]
+	\centering
+	\caption{
+		پارامترهای اجرا در مجموعه داده
+		\lr{CINIC-10}
+	}
+	\label{tabel_parameter_cinic10}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			\specialcell{توزیع\\داده} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{CINIC-10} &
+			\lr{Conv} &
+			\lr{MSS} &
+			نرمال &
+			\lr{30} &
+			\lr{64} &
+			\lr{0.5} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{1} &
+			\lr{2} &
+			\lr{5}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+در شکل
+\ref{result_cinic10}
+به‌وضوح می‌توان مشاهده کرد که روش‌های مبتنی‌بر جابه‌جایی در مقایسه با روش
+\lr{FedAvg}%
+، عملکرد متفاوتی داشته‌اند. هرچند، این روش‌ها همچنان در یک سطح عملکردی نزدیک به هم قرار دارند و تفاوت‌های عمده‌ای میان آن‌ها دیده نمی‌شود. برای بررسی دقیق‌تر، منحنی‌های خطا در شکل
+\ref{app_result_cinic10}
+پیوست، به تفصیل آمده‌اند.
+
+
