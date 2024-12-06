@@ -448,8 +448,6 @@
 \ref{algo_greedy_swapping}
 ارائه شده است. علاوه بر این، نمادهای مختص به این الگوریتم در جدول
 \ref{tabel_GreedySwappingNotations}
-و همچنین تمامی نمادهای پایه در جدول
-\ref{tabel_FedAvgNotations}
 توضیح داده شده‌اند.
 هدف از این جداول، فراهم کردن درکی جامع از نحوه عملکرد و پیاده‌سازی الگوریتم می‌باشد.
 
@@ -496,14 +494,18 @@
 	\end{algorithm}
 \end{LTR}
 
+
 \begin{table}[h]
 	\centering
-	\caption{نمادهای مختص الگوریتم جابه‌جایی حریصانه}
+	\caption{نمادهای الگوریتم جابه‌جایی حریصانه}
 	\label{tabel_GreedySwappingNotations}
 	\begin{tabular}{cr}
 		\hline
 		متغیر & توضیحات \\
 		\hline
+		$w$ & وزن‌های شبکه عصبی \\
+		$m$ & زیر مجموعه‌ای از کاربران \\
+		$U_t$ & مجموعه‌ای نامرتب از $m$ در گام $t$ \\
 		$LRS \, (LstRemainSwap)$ & لیست باقی‌مانده جابه‌جایی \\
 		$NS \, (NumSwaps)$ & تعداد جابه‌جایی‌ها \\
 		$SP \, (SwapPercentage)$ & ضریب کنترلی برای تعداد جابه‌جایی‌ها \\
